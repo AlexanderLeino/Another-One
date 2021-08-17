@@ -33,7 +33,8 @@ function updateCountDown() {
     }
 }
 function nextQuestion (questions){
- questionEl.innerText = questions.question
+ questionEl.innerHTML = questions[0].question
+ 
 }
 
 function selectAnswer(){
@@ -49,5 +50,4 @@ const questions = [
         ]
     }
 ]
-console.log(question.value)
-console.log(question)
+console.log(questions[0].question)
