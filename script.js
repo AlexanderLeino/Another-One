@@ -19,9 +19,9 @@ const questions = [
         question: 'What does HTML an abbreviation for?',
         answers: [
             { Text: 'Hypertext Markup Language', correct: true },
-            { Text: 'How to make l', correct: false },
-            { Text: 'How to make l2', correct: false},
-            { Text: 'How to make l3', correct: false},
+            { Text: 'How to make L', correct: false },
+            { Text: 'How to make L2', correct: false},
+            { Text: 'How to make L3', correct: false},
         ]
     }
 ]
