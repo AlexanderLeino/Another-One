@@ -7,6 +7,15 @@
 // Then the user will be able to add his score to the high score list at the end and will be able to update his initials. 
 
 
+const questions = [
+    {
+        question: 'What does HTML an abbreviation for',
+        answers: [
+            { Text: 'Hypertext Markup Language', correct: true },
+            { text: 'How to make leeks', correct: false }
+        ]
+    }
+]
 var questionEl = document.getElementById('question-body')
 var answerEl = document.getElementById('')
 var nextButton = document.getElementById('next-button')
@@ -41,13 +50,5 @@ function selectAnswer(){
 
 }
 
-const questions = [
-    {
-        question: 'What does HTML an abbreviation for',
-        answers: [
-            { Text: 'Hypertext Markup Language', correct: true },
-            { text: 'How to make leeks', correct: false }
-        ]
-    }
-]
+
 console.log(questions[0].question)
