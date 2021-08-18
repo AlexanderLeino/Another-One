@@ -5,7 +5,11 @@
 // Once the user clicks next then it will load another question and four answers. 
 // The user will keep doing this until time runs out
 // Then the user will be able to add his score to the high score list at the end and will be able to update his initials. 
-
+var startButton = document.getElementById('start-button-container')
+var mainContainer = document.getElementById('container')
+var scoreKeeper = document.getElementById('score-keeper')
+var timeKeeperText = document.getElementById('timer-text')
+var timeKeeper = document.getElementById('time-keeper')
 var questionEl = document.getElementById('question-body')
 var answerbuttonEL1 = document.getElementById('answer-button1')
 var answerbuttonEL2 = document.getElementById('answer-button2')
@@ -13,20 +17,15 @@ var answerbuttonEL3 = document.getElementById('answer-button3')
 var answerbuttonEL4 = document.getElementById('answer-button4')
 var nextButton = document.getElementById('next-button')
 nextButton.addEventListener('click', nextQuestion)
+startButton.addEventListener('click', startGame)
 
-const questions = [
-    {
-        question: 'What does HTML an abbreviation for?',
-        answers: [
-            { Text: 'Hypertext Markup Language', correct: true },
-            { Text: 'How to make L', correct: false },
-            { Text: 'How to make L2', correct: false},
-            { Text: 'How to make L3', correct: false},
-        ]
-    }
-]
-console.log(questions[0].answers[0].Text) /// This 
 
+function startGame() {
+startButton.setAttribute('style', 'visibility: hidden;');
+mainContainer.setAttribute('style', 'visibility: visible;')
+scoreKeeper.setAttribute('style', 'visibility: visible;')
+timeKeeper.setAttribute('style', 'visibility: visible;')
+timeKeeperText.setAttribute('style', 'visibility: visible;')
 const startingMinutes = 1
 let time = startingMinutes * 60;
 const countdownEl = document.getElementById('time-keeper');
@@ -48,6 +47,29 @@ function updateCountDown() {
         time = 0
     }
 }
+
+
+
+}
+
+
+
+const questions = [
+    {
+        question: 'What is HTML an abbreviation for?',
+                
+                    
+        answers: [
+            { Text: 'Hypertext Markup Language', correct: true },
+            { Text: 'How to make leeks', correct: false },
+            { Text: 'How to make legos', correct: false},
+            { Text: 'How to make love', correct: false},
+        ]
+    } 
+]
+console.log(questions[0].answers[0].Text) /// This 
+
+
 function nextQuestion (){
  questionEl.innerHTML = questions[0].question
      answerbuttonEL1.innerHTML= questions[0].answers[0].Text

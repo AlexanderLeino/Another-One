@@ -6,6 +6,13 @@ header {
     display: flex;
     justify-content: space-between;
     font-size: 30px;
+    visibility: hidden;
+}
+#start-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+    visibility: visible;
 }
 #time-keeper {
     padding-right: 50px;
@@ -27,13 +34,14 @@ p{
     box-shadow: darkblue 4px;
     padding: 30px;
 }
-.container{
+#container{
     
     display: flex;
     justify-content: center;
     position: absolute;
     top: 20%;
     padding: 20px;
+    visibility:hidden;
 }
 figure{
     display: flex;
