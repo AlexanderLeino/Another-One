@@ -9,6 +9,7 @@ var startButton = document.getElementById('start-button-container')
 var mainContainer = document.getElementById('container')
 var scoreKeeper = document.getElementById('score-keeper')
 var score = 0
+var userChoice
 var currentScore = document.getElementById('current-score').innerText = score
 var timeKeeperText = document.getElementById('timer-text')
 var timeKeeper = document.getElementById('time-keeper')
@@ -18,12 +19,11 @@ var answerbuttonEL2 = document.getElementById('answer-button2')
 var answerbuttonEL3 = document.getElementById('answer-button3')
 var answerbuttonEL4 = document.getElementById('answer-button4')
 var nextButton = document.getElementById('next-button')
-startButton.addEventListener('click', setFirstQuestion)
 startButton.addEventListener('click', startGame)
-
-
+//answerbuttonEL1.addEventListener('click',selectAnswer)
 
 function startGame() {
+setFirstQuestion()
 startButton.setAttribute('style', 'visibility: hidden;');
 mainContainer.setAttribute('style', 'visibility: visible;')
 scoreKeeper.setAttribute('style', 'visibility: visible;')
@@ -42,8 +42,9 @@ function updateCountDown() {
     if (minutes ==0 && seconds == 0) {
         countdownEl.innerHTML= 'Time Has Expired'
         time = 0
-    setFirstQuestion();
-    }}}
+        
+    }
+}}
 
     let questions = [
     {
@@ -52,24 +53,19 @@ function updateCountDown() {
         option2: 'How to make Leeks',
         option3: 'How to make legos',
         option4: 'How to make love',
-        answer: 2,
+        answer: 1,
     }
 ]
-console.log(questions)
-console.log(questions[0])
+
+
 
 
 function setFirstQuestion (){
  questionEl.innerHTML = questions[0].question
- ///answerbuttonEL1.innerHTML = 
-
-
+ answerbuttonEL1.innerHTML = questions[0].option1
+ answerbuttonEL2.innerHTML = questions[0].option2
+ answerbuttonEL3.innerHTML = questions[0].option3
+ answerbuttonEL4.innerHTML = questions[0].option4
 }
 
 
-function selectAnswer(){
-
-}
-
-
-console.log(questions[0].question)
