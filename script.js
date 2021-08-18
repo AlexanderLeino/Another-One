@@ -14,6 +14,7 @@ var currentScore = document.getElementById('current-score').innerText = score
 var questionCounter = 0
 var numberOfCorrectAnswers = 0
 var numberOfIncorrectAnswers = 0
+var time
 var timeKeeperText = document.getElementById('timer-text')
 var timeKeeper = document.getElementById('time-keeper')
 var questionEl = document.getElementById('question-body')
@@ -37,12 +38,12 @@ scoreKeeper.setAttribute('style', 'visibility: visible;')
 timeKeeper.setAttribute('style', 'visibility: visible;')
 timeKeeperText.setAttribute('style', 'visibility: visible;')
 const startingMinutes = 1
-let time = startingMinutes * 60;
+time = startingMinutes * 60;
 const countdownEl = document.getElementById('time-keeper'); 
 setInterval(updateCountDown, 1000);
 function updateCountDown() {
     const minutes = Math.floor(time/ 60);
-    let seconds = time % 60;
+    seconds = time % 60;
     seconds = seconds < 1 ? '0' + seconds : seconds;
     countdownEl.innerHTML= `${minutes}: ${seconds}`;
     time--;
@@ -179,6 +180,8 @@ function getUserAnswer (){
         console.log('You got the question wrong')
         questionCounter++
         numberOfIncorrectAnswers++
+        time = time - 10
+        console.log(time)
         getQuestion()
     }
     console.log(questionCounter)
