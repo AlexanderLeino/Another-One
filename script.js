@@ -231,7 +231,10 @@ function startGame() {
             timeKeeperText.setAttribute('style', 'visibility: hidden;')
             formcontainer.setAttribute('style', 'visibility: hidden;')
             highScoreButton.setAttribute('style', 'visibility:hidden')
+           
             userInitials = document.getElementById('userInitials').value
             console.log(userInitials)
+            localStorage.setItem('User Initials', userInitials)
+            localStorage.setItem('User Score', numberOfCorrectAnswers)
         }
         
