@@ -70,3 +70,43 @@ div button {
     font-size: 15px;
     border-radius: 63px;
 }
+
+#form-container {
+    margin-top: -10%;
+    border: blue 2px solid;
+   display: flex;
+   justify-content: center;
+   height: 100%;
+   visibility: hidden;
+}
+label {
+    font-size: 35px;
+    text-align: center;
+}
+.input-container {
+   display: flex;
+   justify-content: center;
+}
+
+#final-score {
+    font-size: 35px;
+    text-align: center;
+}
+.scoreboard-scoreboard {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 275px;
+}
+
+#scoreboard-title {
+    text-align: center;
+    font-size: 100px;
+}
+#scoreboard-score {
+    border-bottom: blueviolet 2px solid;
+}
+#scoreboard-container{
+    visibility: hidden;
+    margin-top: -350px;
+}

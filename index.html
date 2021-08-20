@@ -16,7 +16,7 @@
         <div id="start-button-container">
             <div class="start-button-card">
                 <button id="start-button">Start</button>
-                <button>High Score Leaderboard</button>
+                <button id="high-scoreboard" onclick="showScoreBoard()">High Score Leaderboard</button>
             </div>
         </div>
         <div id="container">
@@ -33,6 +33,31 @@
                 <button id="answer-button4" class="answer-button" onclick= "userChoice = 4">Answer 4</button>
             </Figure>
         </div>
+        <div id="form-container">
+            <form>
+              <h1>Congrats on Completing the Game! Submit your first two Initials and we will add your score to the leaderboard!</h1>
+              <div id="final-score">Your Final Score: <span id="final-score-span"></span></div>
+              <div class="input-container">
+                <label for="fname">First Two Initials:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <input type="submit" value="Submit" id="submitButton" onclick="showScoreBoard()">
+              </div>
+              </form>
+        </div>
+        
+        <div id="scoreboard-container">
+            <h1 id="scoreboard-title">Scoreboard</h1>
+            <div class="scoreboard-scoreboard">
+                <h1>Name:</h1>
+                <ul>
+                    
+                </ul>
+                <h1 id="scoreboard-score">Score:</h1>
+                <ul>
+                    
+                </ul>          
+            </div>
+        </div>  
 <script src="script.js"></script>
 </body>
 </html>

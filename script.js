@@ -5,13 +5,17 @@
 // Once the user clicks next then it will load another question and four answers. 
 // The user will keep doing this until time runs out
 // Then the user will be able to add his score to the high score list at the end and will be able to update his initials. 
-
+document.getElementById("submitButton").addEventListener("click", function(event){
+    event.preventDefault()
+  });
+var finalScoreSpan = document.getElementById('final-score-span')
 var startButton = document.getElementById('start-button-container')
 var mainContainer = document.getElementById('container')
+
 var scoreKeeper = document.getElementById('score-keeper')
 var userChoice = 0
 var currentScore = document.getElementById('current-score')
-
+var finalScore
 var questionCounter = 0
 var numberOfCorrectAnswers = 0
 var numberOfIncorrectAnswers = 0
@@ -24,6 +28,8 @@ var answerbuttonEL2 = document.getElementById('answer-button2')
 var answerbuttonEL3 = document.getElementById('answer-button3')
 var answerbuttonEL4 = document.getElementById('answer-button4')
 var nextButton = document.getElementById('next-button')
+var formcontainer = document.getElementById('form-container')
+var scoreBoardContainer = document.getElementById('scoreboard-container')
 
 startButton.addEventListener('click', startGame)
 answerbuttonEL1.addEventListener('click',getUserAnswer)
@@ -41,6 +47,8 @@ scoreKeeper.setAttribute('style', 'visibility: visible;')
 timeKeeper.setAttribute('style', 'visibility: visible;')
 timeKeeperText.setAttribute('style', 'visibility: visible;')
 
+
+
 const startingMinutes = 1
 time = startingMinutes * 60;
 const countdownEl = document.getElementById('time-keeper'); 
@@ -52,10 +60,8 @@ function updateCountDown() {
     seconds = seconds < 1 ? '0' + seconds : seconds;
     countdownEl.innerHTML= `${minutes}: ${seconds}`;
     time--;
-    if (minutes ==0 && seconds == 0) {
-        countdownEl.innerHTML= 'Time Has Expired'
-        time = 0
-        
+    if (time <= 0) {
+        countdownEl.innerHTML= 'Time Has Expired'    
     }
 }}
 
@@ -156,6 +162,7 @@ function getUserAnswer (){
         questionCounter++
         numberOfCorrectAnswers++
         currentScore.innerHTML = numberOfCorrectAnswers
+        
         getQuestion()
     }
     else if (questionCounter === 1 && userChoice === 2){
@@ -194,7 +201,32 @@ function getUserAnswer (){
         console.log(time)
         getQuestion()
     }
+    if(questionCounter == 5)
+    {
+    endGame()
+    }}
     console.log(questionCounter)
         console.log(`number of correct answers ${numberOfCorrectAnswers}`)
         console.log(`number of incorrect answers ${numberOfIncorrectAnswers}`)
+        
+    
+
+function endGame(){
+    finalScore = time
+    console.log(finalScore)
+    formcontainer.setAttribute('style', 'visibility: visible;')
+    mainContainer.setAttribute('style', 'visbility: hidden;')
+   
+    finalScoreSpan.innerText = finalScore
+}
+
+function showScoreBoard () {
+startButton.setAttribute('style', 'visibility: hidden;');
+mainContainer.setAttribute('style', 'visibility: hidden;')
+scoreKeeper.setAttribute('style', 'visibility: hidden;')
+timeKeeper.setAttribute('style', 'visibility: hidden;')
+timeKeeperText.setAttribute('style', 'visibility: hidden;')
+scoreBoardContainer.setAttribute('style', 'visibility:visible')
+formcontainer.setAttribute('style', 'visibility: hidden;')
+
 }
