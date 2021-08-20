@@ -9,7 +9,7 @@ document.getElementById("submitButton").addEventListener("click", function(event
     event.preventDefault()
   });
 var finalScoreSpan = document.getElementById('final-score-span')
-var startButton = document.getElementById('start-button-container')
+var startButton = document.getElementById('start-button')
 var mainContainer = document.getElementById('container')
 
 var scoreKeeper = document.getElementById('score-keeper')
@@ -21,6 +21,7 @@ var numberOfCorrectAnswers = 0
 var numberOfIncorrectAnswers = 0
 var time
 var timeKeeperText = document.getElementById('timer-text')
+var highScoreButton = document.getElementById('high-score-button')
 var timeKeeper = document.getElementById('time-keeper')
 var questionEl = document.getElementById('question-body')
 var answerbuttonEL1 = document.getElementById('answer-button1')
@@ -216,7 +217,7 @@ function endGame(){
     console.log(finalScore)
     formcontainer.setAttribute('style', 'visibility: visible;')
     mainContainer.setAttribute('style', 'visbility: hidden;')
-   
+    highScoreButton.setAttribute('style', 'visibility:hidden')
     finalScoreSpan.innerText = finalScore
 }
 
@@ -228,5 +229,5 @@ timeKeeper.setAttribute('style', 'visibility: hidden;')
 timeKeeperText.setAttribute('style', 'visibility: hidden;')
 scoreBoardContainer.setAttribute('style', 'visibility:visible')
 formcontainer.setAttribute('style', 'visibility: hidden;')
-
+highScoreButton.setAttribute('style', 'visibility:hidden')
 }
