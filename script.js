@@ -4,11 +4,16 @@
 /// Then the user will have to click next to continue.
 // Once the user clicks next then it will load another question and four answers. 
 // The user will keep doing this until time runs out
-// Then the user will be able to add his score to the high score list at the end and will be able to update his initials. 
+// Then the user will be able to add his score to the high score list at the end and will be able to update his initials.
+var localData = window.localStorage
+var ulKeeper = []
+var gameCount = 0
+var leaderBoardScoreAndName = []
+console.log(leaderBoardScoreAndName)
 var finalScoreSpan = document.getElementById('final-score-span')
 var startButton = document.getElementById('start-button')
 var mainContainer = document.getElementById('container')
-var userInitials = ''
+var actualLeaderBoard = []
 var scoreKeeper = document.getElementById('score-keeper')
 var userChoice = 0
 var currentScore = document.getElementById('current-score')
@@ -28,35 +33,29 @@ var answerbuttonEL4 = document.getElementById('answer-button4')
 var nextButton = document.getElementById('next-button')
 var formcontainer = document.getElementById('form-container')
 var scoreBoardContainer = document.getElementById('scoreboard-container')
-
+var leaderUl = document.querySelector('ul')
+var resetButton = document.getElementById('resetButton')
+var gameStarted = false
+var startTime
 
 startButton.addEventListener('click', startGame)
 answerbuttonEL1.addEventListener('click',getUserAnswer)
 answerbuttonEL2.addEventListener('click',getUserAnswer)
 answerbuttonEL3.addEventListener('click',getUserAnswer)
 answerbuttonEL4.addEventListener('click',getUserAnswer)
+resetButton.addEventListener('click', restartGame)
+
+
 document.getElementById("submitButton").addEventListener("click", function(event){
     event.preventDefault()
 });
 //answerbuttonEL1.addEventListener('click',selectAnswer)
-
-function startGame() {
-    getQuestion()
-    currentScore.textContent = numberOfCorrectAnswers
-    startButton.setAttribute('style', 'visibility: hidden;');
-    mainContainer.setAttribute('style', 'visibility: visible;')
-    scoreKeeper.setAttribute('style', 'visibility: visible;')
-    timeKeeper.setAttribute('style', 'visibility: visible;')
-    timeKeeperText.setAttribute('style', 'visibility: visible;')
-    
-    
-    
-    const startingMinutes = 1
-    time = startingMinutes * 60;
+time = 60;
     const countdownEl = document.getElementById('time-keeper'); 
-    setInterval(updateCountDown, 1000);
+    
     
     function updateCountDown() {
+        if(gameStarted){
         const minutes = Math.floor(time/ 60);
         seconds = time % 60;
         seconds = seconds < 1 ? '0' + seconds : seconds;
@@ -64,8 +63,27 @@ function startGame() {
         time--;
         if (time <= 0) {
             countdownEl.innerHTML= 'Time Has Expired'    
+        }}
+        else{
+            console.log('I have died')
+            clearInterval(startTime)
+            return;
         }
-    }}
+    }
+function startGame() {
+    getQuestion()
+    gameCount++
+    console.log(`The current gamecount is ${gameCount})`)
+    currentScore.textContent = numberOfCorrectAnswers
+    startButton.setAttribute('style', 'visibility: hidden;');
+    mainContainer.setAttribute('style', 'visibility: visible;')
+    scoreKeeper.setAttribute('style', 'visibility: visible;')
+    timeKeeper.setAttribute('style', 'visibility: visible;')
+    timeKeeperText.setAttribute('style', 'visibility: visible;')
+    resetButton.setAttribute('style', 'visibility: hidden;');
+    gameStarted = true
+    startTime = setInterval(updateCountDown, 1000);
+    }
     
     let questions = [
         {
@@ -214,15 +232,44 @@ function startGame() {
         
         
         function endGame(){
+            gameStarted = false
             finalScore = time
             console.log(finalScore)
+            resetButton.setAttribute('style', 'visibility: visible;');
             formcontainer.setAttribute('style', 'visibility: visible;')
             mainContainer.setAttribute('style', 'visbility: hidden;')
             highScoreButton.setAttribute('style', 'visibility:hidden')
             finalScoreSpan.innerText = finalScore
-        }
         
+            
+
+        }
+    
+    function createLeaderBoard () {
+        console.log('Hello I am working')
+        var textValue = document.getElementById('userInitials').value
+        console.log(textValue)
+        var storeScoreBoardValues = {}
+        storeScoreBoardValues.initials=textValue
+        storeScoreBoardValues.score=time
+        leaderBoardScoreAndName.push(storeScoreBoardValues)
+        console.log(leaderBoardScoreAndName)
+        for (var i = 0; i < leaderBoardScoreAndName.length; i++){
+            localData.setItem('Leader' + i, leaderBoardScoreAndName[i].initials + leaderBoardScoreAndName[i].score) 
+            }
+        
+
+        showScoreBoard()
+    }
         function showScoreBoard () {
+            
+            leaderBoardScoreAndName.sort((a, b) => b.score - a.score)
+            leaderBoardScoreAndName.forEach((e) => {
+            var newScore = document.createElement('li')
+            ulKeeper.push(newScore)
+            newScore.innerText = `${e.initials} ${e.score}`
+            leaderUl.appendChild(newScore)    });
+    
             scoreBoardContainer.setAttribute('style','visibility:visible')
             startButton.setAttribute('style', 'visibility: hidden;');
             mainContainer.setAttribute('style', 'visibility: hidden;')
@@ -231,10 +278,34 @@ function startGame() {
             timeKeeperText.setAttribute('style', 'visibility: hidden;')
             formcontainer.setAttribute('style', 'visibility: hidden;')
             highScoreButton.setAttribute('style', 'visibility:hidden')
-           
-            userInitials = document.getElementById('userInitials').value
-            console.log(userInitials)
-            localStorage.setItem('User Initials', userInitials)
-            localStorage.setItem('User Score', numberOfCorrectAnswers)
         }
+            function restartGame() {
+                time = 60
+                questionCounter = 0
+                numberOfCorrectAnswers = 0
+                numberOfIncorrectAnswers = 0
+                for (i = 0; i < ulKeeper.length; i++){
+                    leaderUl.removeChild(ulKeeper[i])
+                }
+                ulKeeper = []
+                startButton.setAttribute('style', 'visibility: visible')
+                highScoreButton.setAttribute('style', 'visibility: visible')
+            }
+            function retreiveLocalStorage (){
+                for(i = 0; i < localData.length; i++ ){
+                    console.log('Anything')
+                    if(localData.getItem('Leader' + i) != null){
+                        console.group('anything2')
+                    var oldObjects = {}
+                    oldObjects.initials = localData.getItem('Leader' + i).replace(/[0-9]/g, '')
+                    oldObjects.score = parseInt(localData.getItem('Leader' + i).match(/\d+/g));
+                    leaderBoardScoreAndName.push(oldObjects)
+                }
+            
+                  
+                }
+        }
+            retreiveLocalStorage()
         
+        // time is for my scores
+        // Initials 
