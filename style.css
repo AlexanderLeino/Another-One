@@ -60,6 +60,14 @@ div button {
     width: 441px;
     font-size: 22px;  
 }
+#resetButton {
+    height: 50px;
+    width: inherit;
+}
+#submitButton {
+    height: 50px;
+    width: inherit;
+}
 #next-button-container {
     display: flex;
     justify-content: right;
@@ -78,6 +86,7 @@ div button {
    justify-content: center;
    height: 100%;
    visibility: hidden;
+   font-size: 15px;
 }
 label {
     font-size: 35px;
@@ -86,17 +95,19 @@ label {
 .input-container {
    display: flex;
    justify-content: center;
+   align-items: flex-end;
 }
 
 #final-score {
-    font-size: 35px;
+    font-size: 31px;
     text-align: center;
 }
 .scoreboard-scoreboard {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-    margin-left: 275px;
+    margin-left: 800px;
+    font-size: 25px;
 }
 
 #scoreboard-title {
@@ -109,4 +120,11 @@ label {
 #scoreboard-container{
     visibility: hidden;
     margin-top: -350px;
+}
+#userInitials {
+    height: 50px;
+}
+ul {
+    position: absolute;
+    top: 201px
 }

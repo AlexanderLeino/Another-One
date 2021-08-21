@@ -76,6 +76,7 @@ function startGame() {
     console.log(`The current gamecount is ${gameCount})`)
     currentScore.textContent = numberOfCorrectAnswers
     startButton.setAttribute('style', 'visibility: hidden;');
+    formcontainer.setAttribute('style', 'visbility: hidden;')
     mainContainer.setAttribute('style', 'visibility: visible;')
     scoreKeeper.setAttribute('style', 'visibility: visible;')
     timeKeeper.setAttribute('style', 'visibility: visible;')
@@ -132,7 +133,7 @@ function startGame() {
         userChoice
         console.log(`userChoice should button number. User Choice = ${userChoice}`)
         console.log(`The current question number is + ${questionCounter}`)
-        
+        formcontainer.setAttribute('style', 'visbility: hidden;')
         if(questionCounter == 0){
             questionEl.innerHTML = questions[0].question
             answerbuttonEL1.innerHTML = questions[0].option1
@@ -239,6 +240,7 @@ function startGame() {
             formcontainer.setAttribute('style', 'visibility: visible;')
             mainContainer.setAttribute('style', 'visbility: hidden;')
             highScoreButton.setAttribute('style', 'visibility:hidden')
+            
             finalScoreSpan.innerText = finalScore
         
             
@@ -247,6 +249,7 @@ function startGame() {
     
     function createLeaderBoard () {
         console.log('Hello I am working')
+        formcontainer.setAttribute('style', 'visbility: hidden;')
         var textValue = document.getElementById('userInitials').value
         console.log(textValue)
         var storeScoreBoardValues = {}
@@ -278,8 +281,11 @@ function startGame() {
             timeKeeperText.setAttribute('style', 'visibility: hidden;')
             formcontainer.setAttribute('style', 'visibility: hidden;')
             highScoreButton.setAttribute('style', 'visibility:hidden')
+            resetButton.setAttribute('style', 'visibility: visible;');
         }
             function restartGame() {
+                resetButton.setAttribute('style', 'visibility: hidden;');
+                formcontainer.setAttribute('style', 'visibility: hidden;')
                 time = 60
                 questionCounter = 0
                 numberOfCorrectAnswers = 0

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-    <h5 id="score-keeper">Score:<span id="current-score" ></span></h5>
+    <h5 id="score-keeper">Code Quiz Game<span id="current-score" ></span></h5>
     <h5 id="timer-text">Time:<span id="time-keeper"></span></h5>
     </header>
         <div id="start-button-container">
@@ -38,9 +38,10 @@
               <h1>Congrats on Completing the Game! Submit your first two Initials and we will add your score to the leaderboard!</h1>
               <div id="final-score">Your Final Score: <span id="final-score-span"></span></div>
               <div class="input-container">
-                <label for="fname">First Two Initials:</label><br>
-                <input type="text" id="userInitials"><br>
-                <input type="submit" placeholder="submit"  id="submitButton" onclick="createLeaderBoard()">
+                  <label for="fname">First Two Initials:</label><br>
+                  <input type="text" id="userInitials"><br>
+                  <input type="submit" placeholder="submit"  id="submitButton" onclick="createLeaderBoard()">
+                  <button id="resetButton">Click Here to restart the game.</button>  
               </div>
               </form>
         </div>
@@ -52,7 +53,6 @@
                 <ul>
                 </ul>     
             </div>
-            <button id="resetButton">Hello</button>  
         </div>
 <script src="script.js"></script>
 </body>
